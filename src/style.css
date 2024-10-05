@@ -1321,7 +1321,7 @@ footer > ul > li > a:hover {
 .footer-area {
   background-color: #100f1f;
   position: relative;
-  z-index: 1;
+  z-index: -1;
   padding-top: 100px;
 }
 .single-footer-widget {
