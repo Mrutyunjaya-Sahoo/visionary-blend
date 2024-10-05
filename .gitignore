@@ -1,0 +1,19 @@
+# Ignore node modules
+node_modules/
+
+# Ignore Tailwind configuration and build files
+tailwind.config.js
+
+# Ignore lock files (optional, but common practice)
+package-lock.json
+yarn.lock
+
+# Ignore VSCode settings folder
+.vscode/
+
+# Ignore compiled CSS files (if you don't want to version them)
+output.css.map
+
+# Ignore other system-specific files
+.DS_Store
+Thumbs.db
