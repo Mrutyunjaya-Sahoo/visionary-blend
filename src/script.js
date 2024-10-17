@@ -18,16 +18,15 @@ tl.fromTo(hero, 1, { height: '0%' }, { height: '80%', ease: Power2.easeInOut })
 document.addEventListener("DOMContentLoaded", function () {
     let activeItemIndicator = CSSRulePlugin.getRule(".menu-item p#active::after");
     const toggleButton = document.querySelector(".menu-burger");
-    const menuItems = document.querySelectorAll(".menu-item p a"); // Select all the menu links
+    const menuItems = document.querySelectorAll(".menu-item p a");
+    const navBar = document.querySelector("nav");
+    const navLinks = document.querySelector(".nav-links");
+    let lastScrollY = window.scrollY; // Track previous scroll position
     let isOpen = false;
 
-    gsap.set(".menu-item p", {
-        y: 255,
-    });
+    gsap.set(".menu-item p", { y: 255 });
 
-    const timeline = gsap.timeline({
-        paused: true,
-    });
+    const timeline = gsap.timeline({ paused: true });
 
     timeline
         .to(".overlay", {
@@ -35,69 +34,80 @@ document.addEventListener("DOMContentLoaded", function () {
             clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
             ease: "power4.inOut",
         })
-        .to(
-            ".menu-item p",
-            {
-                duration: 1.5,
-                y: 0,
-                stagger: 0.2,
-                ease: "power4.out",
-            },
-            "-=1"
-        )
-        .to(
-            activeItemIndicator,
-            {
-                width: "100%",
-                duration: 1,
-                ease: "power4.out",
-                delay: 0.5,
-            },
-            "<"
-        )
-        .to(
-            ".sub-nav",
-            {
-                bottom: "10%",
-                opacity: 1,
-                duration: 0.5,
-                delay: 0.5,
-            },
-            "<"
-        );
+        .to(".menu-item p", {
+            duration: 1.5,
+            y: 0,
+            stagger: 0.2,
+            ease: "power4.out",
+        }, "-=1")
+        .to(activeItemIndicator, {
+            width: "100%",
+            duration: 1,
+            ease: "power4.out",
+            delay: 0.5,
+        }, "<")
+        .to(".sub-nav", {
+            bottom: "10%",
+            opacity: 1,
+            duration: 0.5,
+            delay: 0.5,
+        }, "<");
 
-    // Toggle button functionality
+    // Toggle menu functionality
     toggleButton.addEventListener("click", function () {
         if (isOpen) {
             timeline.reverse();
-            toggleButton.classList.remove('active'); // Remove the "active" class when closing the menu
+            toggleButton.classList.remove('active');
         } else {
             timeline.play();
-            toggleButton.classList.add('active'); // Add the "active" class when opening the menu
+            toggleButton.classList.add('active');
         }
         isOpen = !isOpen;
     });
 
-    // Close menu and hide the close button after clicking any menu item
+    // Close menu on clicking any menu item
     menuItems.forEach(item => {
         item.addEventListener('click', function (e) {
-            e.preventDefault(); // Prevent default anchor behavior to smoothly handle the animation
-
-            // Play reverse animation to close the menu
+            e.preventDefault();
             if (isOpen) {
                 timeline.reverse();
-                toggleButton.classList.remove('active'); // Reset close button to menu button
+                toggleButton.classList.remove('active');
                 isOpen = false;
-
-                // Simulate page redirection after animation ends (optional)
                 setTimeout(() => {
-                    // Scroll to the section or navigate to the new page
                     window.location.href = item.getAttribute('href');
-                }, 1500); // Wait for the animation to complete (adjust timing based on your animation duration)
+                }, 1500);
             }
         });
     });
+
+    // Navbar hide on scroll down and show on scroll up
+    let isScrollingDown = false; // Track scroll direction
+
+    window.addEventListener("scroll", () => {
+        const currentScrollY = window.scrollY;
+
+        // Detect scroll direction
+        if (currentScrollY > lastScrollY && !isScrollingDown) {
+            // Scrolling down, hide navbar
+            navBar.classList.remove("navbar-visible");
+            navBar.classList.add("navbar-hidden");
+            isScrollingDown = true;
+            navBar.style.background = "rgba(255, 255, 255, 0.8)";
+            navBar.style.boxShadow = "0 4px 15px rgba(0, 0, 0, 0.15)";
+        } else if (currentScrollY < lastScrollY && isScrollingDown) {
+            // Scrolling up, show navbar
+            navBar.classList.remove("navbar-hidden");
+            navBar.classList.add("navbar-visible");
+            isScrollingDown = false;
+        }
+        else {
+            navBar.style.background = "rgba(255, 255, 255, 0.2)";
+            navBar.style.boxShadow = "0 4px 15px rgba(0, 0, 0, 0.1)";
+        }
+        lastScrollY = currentScrollY; // Update the last scroll position
+    });
 });
+
 
 
 
