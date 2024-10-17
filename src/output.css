@@ -592,20 +592,8 @@ video {
   display: grid;
 }
 
-.list-item {
-  display: list-item;
-}
-
-.hidden {
-  display: none;
-}
-
 .w-32 {
   width: 8rem;
-}
-
-.p-4 {
-  padding: 1rem;
 }
 
 .pl-5 {
