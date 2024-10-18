@@ -199,7 +199,7 @@ header .logo a:hover {
 }
 
 /* hero section */
-section,
+
 #hero-section {
   display: flex;
   height: 100vh;
@@ -218,17 +218,17 @@ section,
   height: 100%;
   object-fit: cover;
   background-position: center;
-  border-radius: 5%;
+  border-radius: 3%;
   margin-top: 50px;
+  opacity: 0.7;
 }
 
 .headline {
   position: absolute;
-  top: 50%;
-  left: 10%;
+  top: 70%;
+  left: 5%;
   font-size: 8vw; /* Scales with screen width */
-  transform: translate(-10%, -50%);
-  color: white;
+  color: rgb(255, 255, 255);
   font-weight: 500;
 }
 
@@ -256,7 +256,7 @@ section,
 @media (max-width: 768px) {
   .headline {
     font-size: 10vw; /* Adjust headline size for smaller screens */
-    top: 55%;
+    top: 70%;
     left: 5%;
   }
 }
@@ -306,7 +306,10 @@ main {
 }
 
 .section-heading {
-  transform: rotate(0) translateX(0);
+  /* transform: rotate(0) translateX(0); */
+  opacity: 0; /* Start hidden */
+  transform: translateY(50px); /* Move downwards */
+  transition: opacity 0.5s, transform 0.5s;
 }
 
 .about_img {
@@ -314,8 +317,16 @@ main {
   height: auto;
   -o-object-fit: cover;
   object-fit: cover;
+  opacity: 0;
+  transform: translateY(100px);
+  transition: transform 0.5s ease-in-out, box-shadow 0.5s ease; /* Smooth transition */
+  perspective: 1000px;
+  border-radius: 3%;
 }
-
+.about_img:hover {
+  transform: translateY(0) rotateY(10deg) rotateX(-5deg); /* Rotate for 3D effect */
+  box-shadow: 0 10px 30px rgba(89, 88, 88, 0.692); /* Shadow for depth */
+}
 .section-heading {
   font-family: "EB Garamond", serif;
   color: #fff;
@@ -381,12 +392,6 @@ blockquote {
 
   .about_img {
     height: 40rem;
-  }
-
-  .section-heading {
-    position: absolute;
-    transform-origin: top left;
-    transform: rotate(-90deg) translateX(-100%);
   }
 
   .intro {
@@ -898,7 +903,8 @@ blockquote {
 }
 
 /* section seervices*/
-#services {
+
+/* #services {
   min-height: 100vh;
 }
 @media screen and (max-width: 990px) {
@@ -1055,14 +1061,164 @@ blockquote {
 }
 .is_4 {
   z-index: 4;
-}
+} */
 
 /* contact */
+
+/* Service Section */
+/* #services{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction: column;
+} */
+
+.services_container {
+  max-width: 1000px;
+  margin: 5% auto;
+  text-align: center;
+}
+
+.section_title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: #fff;
+}
+.service_section {
+  max-width: 1000px;
+  width: 90%;
+  margin: 10% auto;
+  justify-content: space-between;
+  display: flex;
+  gap: 10px;
+}
+
+.bi {
+  font-size: 70px;
+}
+
+.service_section div {
+  width: 50%;
+}
+
+.service_left {
+  width: 100%;
+  background: #fff;
+  padding: 10% 40px;
+  border-radius: 12px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+  text-align: center;
+}
+.service_left p {
+  color: black;
+}
+
+.service_right {
+  overflow: hidden;
+  padding: 30px 40px;
+}
+
+.service_right div {
+  display: flex;
+  transition: all 0.5s ease-in-out;
+}
+
+.service_right img {
+  width: 100%;
+  margin: 0px 10px;
+}
+
+.service_left h1 {
+  text-align: center;
+  font-size: 2rem; /* Large heading */
+  font-weight: 700; /* Bold weight for headings */
+  color: #222;
+  margin-bottom: 10px;
+}
+
+.service_left p {
+  font-size: 1rem;
+  font-weight: 400; /* Normal weight for paragraphs */
+  color: #555;
+  line-height: 1.6; /* Better readability */
+  margin-top: 10px;
+}
+.service_left img {
+  padding: 30px 0px;
+  width: 20%;
+}
+
+.img_sliderr {
+  margin-left: -55%;
+}
+
+@media (max-width: 768px) {
+  .service_section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .service_section div {
+    width:80%;
+  }
+
+  .service_right {
+    padding: 20px;
+  }
+
+  .service_left {
+    padding: 8% 20px;
+  }
+
+  .bi {
+    font-size: 50px;
+  }
+  .service_left h1 {
+    font-size: 1.75rem; /* Adjust heading size */
+  }
+
+  .service_left p {
+    font-size: 0.95rem; /* Adjust paragraph size */
+    line-height: 1.5;
+  }
+  .service_right img {
+    margin: 5px;
+  }
+
+  .img_sliderr {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .service_left {
+    padding: 6% 15px;
+  }
+
+  .bi {
+    font-size: 40px; /* Smaller icons for very small screens */
+  }
+
+  .service_left h1 {
+    font-size: 1.5rem; /* Adjust heading size */
+  }
+
+  .service_left p {
+    font-size: 0.85rem; /* Smaller paragraph text */
+  }
+  .service_right img {
+    width: 90%; /* Scale down images */
+    margin: 5px auto; /* Center images */
+  }
+}
+
+/* service section ends here */
 
 #contact {
   display: grid;
   place-items: center;
-  height: 100vh;
+  height: 83vh;
   font-family: "Poppins", sans-serif;
 }
 

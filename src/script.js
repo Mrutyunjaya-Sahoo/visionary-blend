@@ -1,3 +1,4 @@
+
 const hero = document.querySelector('.hero');
 const slider = document.querySelector('.slider');
 const logo = document.querySelector('.logo'); // Fixed selector from #logo to .logo
@@ -11,7 +12,14 @@ tl.fromTo(hero, 1, { height: '0%' }, { height: '80%', ease: Power2.easeInOut })
     .fromTo(slider, 1.2, { x: '-100%' }, { x: '0%', ease: Power2.easeInOut }, '-=1.2')
     .fromTo(logo, 0.5, { opacity: 0, x: 30 }, { opacity: 1, x: 0 }, '-=0.5')
     .fromTo(hamburger, 0.5, { opacity: 0, x: 30 }, { opacity: 1, x: 0 }, '-=0.5')
-    .fromTo(headline, 0.5, { opacity: 0, x: 30 }, { opacity: 1, x: 0 }, '-=0.5');
+// .fromTo(headline, 0.5, { opacity: 0, x: 30 }, { opacity: 1, x: 0 }, '-=0.5');
+
+headline.innerHTML = headline.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
+tl.staggerFrom('.headline .letter', 1.5, {
+    opacity: 0,
+    ease: Power4.easeInOut
+}, 0.15, 0.2);
+
 
 // Navbar
 
@@ -108,37 +116,165 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+// About section text reveal
+gsap.registerPlugin(ScrollTrigger);
+
+
+// Function to split text into spans
+function splitTextToSpans() {
+    const elements = document.querySelectorAll('.intro h2, .intro p');
+
+    elements.forEach((el) => {
+        const text = el.textContent;
+        el.innerHTML = ''; // Clear existing content
+        text.split('').forEach((char) => {
+            const span = document.createElement('span');
+            span.textContent = char; // Add each character to span
+            el.appendChild(span);
+        });
+    });
+}
+
+// Function to animate characters
+function animateCharacters() {
+    const elements = document.querySelectorAll('.intro h2, .intro p');
+
+    elements.forEach((el) => {
+        const chars = el.querySelectorAll('span');
+        let tl = gsap.timeline();
+        gsap.fromTo(chars,
+            {
+                opacity: 0.3,
+                stagger: 0.5,
+                y: 50
+            },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 0.3,  // Decrease duration for faster animation
+                stagger: 0.03,  // Decrease stagger time for quicker reveal
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: el,
+                    scrub: 0.3,
+                    start: "top 50%",
+                    end: "bottom 30%",
+                    toggleActions: "play none none reverse", // Play animation on enter, reverse on exit
+                },
+
+            });
+    });
+}
+
+// Function to animate elements on scroll
+function animateAboutSection() {
+    const heading = document.querySelector('.section-heading');
+    const image = document.querySelector('.about_img');
+
+    // Animate the heading
+    gsap.fromTo(heading,
+        {
+            opacity: 0,
+            x: -100, // Start from the left
+        },
+        {
+            opacity: 1,
+            x: 0,
+            duration: 0.5,
+            ease: "power1.out",
+            scrollTrigger: {
+                trigger: heading,
+                start: "top 80%", // Start the animation when the top of the element hits 80% of the viewport height
+                toggleActions: "play none none reverse", // Play animation on enter, reverse on exit
+            }
+        }
+    );
+
+    // Animate the image
+    gsap.fromTo(image,
+        {
+            opacity: 0,
+            y: 100, // Start from the bottom
+        },
+        {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease: "power1.out",
+            scrollTrigger: {
+                trigger: image,
+                scrub: 0.3,
+                start: "top 80%", // Start the animation when the top of the element hits 80% of the viewport height
+                toggleActions: "play none none reverse", // Play animation on enter, reverse on exit
+            }
+        }
+    );
+}
+
+// Call the functions on DOMContentLoaded
+document.addEventListener("DOMContentLoaded", () => {
+    splitTextToSpans();
+    animateCharacters();
+    animateAboutSection();
+});
 
 
 
 // Overlapping cards Services
 
-let Container = document.querySelectorAll(".service-container");
-let Cards = gsap.utils.toArray(".card");
+// let Container = document.querySelectorAll(".service-container");
+// let Cards = gsap.utils.toArray(".card");
 
-Cards.forEach((card, index) => {
-    const last = index === Cards.length - 1;
-    console.log(last)
-    let tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: card,
-            start: "top top",
+// Cards.forEach((card, index) => {
+//     const last = index === Cards.length - 1;
+//     console.log(last)
+//     let tl = gsap.timeline({
+//         scrollTrigger: {
+//             trigger: card,
+//             start: "top top",
 
-            scrub: true, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
-            snap: true,
-        }
-    })
+//             scrub: true, // smooth scrubbing, takes 1 second to "catch up" to the scrollbar
+//             snap: true,
+//         }
+//     })
 
-    tl.to(card, {
-        scale: 0.8,
-        filter: "blur(5px)",
-        stagger: {
-            each: 1,
-            from: "start"
-        }
-    }, "<");
-}
-)
+//     tl.to(card, {
+//         scale: 0.8,
+//         filter: "blur(5px)",
+//         stagger: {
+//             each: 1,
+//             from: "start"
+//         }
+//     }, "<");
+// }
+// )
+
+
+//Services
+
+gsap.to(".img_slider", {
+    scrollTrigger: {
+        trigger: ".img_slider",
+        start: "top bottom",
+        scrub: true,
+        toggleActions: "restart pause reverse pause"
+    },
+    x: -300,
+    duration: 1
+});
+
+gsap.to(".img_sliderr", {
+    scrollTrigger: {
+        trigger: ".img_sliderr",
+        start: "top bottom",
+        scrub: true,
+        toggleActions: "restart pause reverse pause"
+    },
+    x: 300,
+    duration: 1
+});
+
+
 
 // Contact 
 
