@@ -4,47 +4,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>services</title>
+    <title>VISIONARY BLEND</title>
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
     <link rel="stylesheet" href="services.css">
+    <link rel="stylesheet" href="input.css">
+    <link rel="stylesheet" href="output.css">
 </head>
 
 <body>
-    <section>
-        <div class=" "
-            data-hover-img="https://img.freepik.com/free-photo/webpage-content-design-website-icon_53876-120651.jpg?t=st=1728072345~exp=1728075945~hmac=d5349392a3d677a3cb11a6e0a991f119f22e10f2adb7f0ce5538aca0ecc844e0&w=1380">
-            <h2 class="display-3">Website Design</h2>
-        </div>
-        <div class=""
-            data-hover-img="https://img.freepik.com/free-vector/flat-design-advertising-agency-banner-template_23-2150059799.jpg?t=st=1728072693~exp=1728076293~hmac=3164dea388ca7174b5e829321360834c28f2353c3a29b87b565a301b261b5485&w=1380">
-            <h2 class="display-3">Ad Promotion </h2>
+    <svg xmlns="http://www.w3.org/2000/svg" class="goo" version="1.1" width="100%">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur"></feGaussianBlur>
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 35 -15"
+                    result="goo"></feColorMatrix>
+                <feComposite in="SourceGraphic" in2="goo" operator="atop"></feComposite>
+            </filter>
+        </defs>
+    </svg>
+
+    <div id="cursor"></div>
+
+    <!-- Button -->
+    <a href="./index.html" class="right-6 top-3 fixed z-10">
+        <button class="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group"
+            type="button">
+            <div
+                class="bg-green-400 rounded-xl h-12 w-1/4 flex items-center justify-center absolute left-1 top-[4px] group-hover:w-[184px] z-10 duration-500">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" height="25px" width="25px">
+                    <path d="M224 480h640a32 32 0 1 1 0 64H224a32 32 0 0 1 0-64z" fill="#000000"></path>
+                    <path
+                        d="m237.248 512 265.408 265.344a32 32 0 0 1-45.312 45.312l-288-288a32 32 0 0 1 0-45.312l288-288a32 32 0 1 1 45.312 45.312L237.248 512z"
+                        fill="#000000"></path>
+                </svg>
+            </div>
+            <p class="translate-x-2">Go Back</p>
+        </button>
+    </a>
+    <div class="parent">
+        <!-- <button class="primary-btn toggle" onclick="modeToggle()">Mode Toggle</button> -->
+
+        <div class="title-row">
+            <h1 class="title">
+                <span class="word">Digital</span> <br>
+                <span class="word">Marketing</span>
+            </h1>
+
         </div>
 
-        <div class=""
-            data-hover-img="https://img.freepik.com/free-photo/graphic-designer-editing-footage-software-working-edit-video-montage-with-color-grading-audio-effects-sound-film-production-content-making-creative-movie-computer_482257-48019.jpg?t=st=1728074451~exp=1728078051~hmac=984c1fd750f8dd38677903cea679712afe7f416049a83ab568e53dec855ffdb1&w=1060">
-            <h2 class="display-3">Video Editing </h2>
+
+        <div class=" container"><a href="#">
+                <div class="container-number"><sup>(01)</sup></div>
+                <div class="container-text">Website Design</div>
+                <img class="swipeimage"
+                    src="https://img.freepik.com/free-photo/webpage-content-design-website-icon_53876-120651.jpg?t=st=1728072345~exp=1728075945~hmac=d5349392a3d677a3cb11a6e0a991f119f22e10f2adb7f0ce5538aca0ecc844e0&w=1380">
+            </a>
         </div>
 
-        <div class=""
-            data-hover-img="https://img.freepik.com/free-vector/gradient-affiliate-marketing-illustration_52683-82972.jpg?t=st=1728075910~exp=1728079510~hmac=2cfcc280bc61f90ecff7d2a3ad3da786f7184cbcbdf3cad58566e3e3618cc663&w=1060">
-            <h2 class="display-3">Social Media Handel </h2>
+        <div class="container"><a href="#">
+                <div class="container-number"><sup>(02)</sup></div>
+                <div class="container-text">Ad Promotion</div>
+                <img class="swipeimage"
+                    src="https://img.freepik.com/free-vector/flat-design-advertising-agency-banner-template_23-2150059799.jpg?t=st=1728072693~exp=1728076293~hmac=3164dea388ca7174b5e829321360834c28f2353c3a29b87b565a301b261b5485&w=1380">
+            </a>
         </div>
 
-        <div class=""
-            data-hover-img="https://img.freepik.com/free-vector/wedding-menu-template_23-2148041060.jpg?t=st=1728082511~exp=1728086111~hmac=48660b8d6a48291c51cf3ccd9b0443c146f1cfccc13e7fa09989a543b75b2af7&w=740">
-            <h2 class="display-3">Menu Designing </h2>
+        <div class="container"><a href="#">
+                <div class="container-number"><sup>(03)</sup></div>
+                <div class="container-text">Video Editing
+                </div>
+                <img class="swipeimage"
+                    src="https://img.freepik.com/free-photo/graphic-designer-editing-footage-software-working-edit-video-montage-with-color-grading-audio-effects-sound-film-production-content-making-creative-movie-computer_482257-48019.jpg?t=st=1728074451~exp=1728078051~hmac=984c1fd750f8dd38677903cea679712afe7f416049a83ab568e53dec855ffdb1&w=1060">
+            </a>
         </div>
 
-        <div class=""
-            data-hover-img="https://img.freepik.com/free-photo/young-man-working-his-photography-studio_23-2149033295.jpg?t=st=1728086559~exp=1728090159~hmac=3f7e3b23d46b3b24fdf6ffb3924416805e88ef59acd12eebe05b884dfbfa3615&w=1060">
-            <h2 class="display-3">Product Shoot </h2>
+        <div class="container"><a href="#">
+                <div class="container-number"><sup>(04)</sup></div>
+                <div class="container-text">Social Media Handel
+                </div>
+                <img class="swipeimage"
+                    src="https://img.freepik.com/free-vector/gradient-affiliate-marketing-illustration_52683-82972.jpg?t=st=1728075910~exp=1728079510~hmac=2cfcc280bc61f90ecff7d2a3ad3da786f7184cbcbdf3cad58566e3e3618cc663&w=1060">
+            </a>
         </div>
 
-        <div class=""
-            data-hover-img="https://img.freepik.com/free-vector/floral-wedding-instagram-posts-collection_23-2148819474.jpg?t=st=1728086671~exp=1728090271~hmac=35cd5b856d4293dd59b1a8efc48050a2e29bf9dde37c874dfcf0cc19a4999942&w=740">
-            <h2 class="display-3">Album Design(All Types) </h2>
+        <div class="container"><a href="#">
+                <div class="container-number"><sup>(05)</sup></div>
+                <div class="container-text">Menu Design
+                </div>
+                <img class="swipeimage"
+                    src="https://img.freepik.com/free-vector/wedding-menu-template_23-2148041060.jpg?t=st=1728082511~exp=1728086111~hmac=48660b8d6a48291c51cf3ccd9b0443c146f1cfccc13e7fa09989a543b75b2af7&w=740">
+            </a>
         </div>
-    </section>
 
+        <div class="container"><a href="#">
+                <div class="container-number"><sup>(06)</sup></div>
+                <div class="container-text">Product Shoot
+                </div>
+                <img class="swipeimage"
+                    src="https://img.freepik.com/free-photo/young-man-working-his-photography-studio_23-2149033295.jpg?t=st=1728086559~exp=1728090159~hmac=3f7e3b23d46b3b24fdf6ffb3924416805e88ef59acd12eebe05b884dfbfa3615&w=1060">
+            </a>
+        </div>
+
+        <div class="container"><a href="#">
+                <div class="container-number"><sup>(07)</sup></div>
+                <div class="container-text">Album Design(All Types)
+                </div>
+                <img class="swipeimage"
+                    src="https://img.freepik.com/free-vector/floral-wedding-instagram-posts-collection_23-2148819474.jpg?t=st=1728086671~exp=1728090271~hmac=35cd5b856d4293dd59b1a8efc48050a2e29bf9dde37c874dfcf0cc19a4999942&w=740">
+            </a>
+        </div>
+
+    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/CSSRulePlugin.min.js"></script>
     <script src="https://unpkg.com/scrollreveal"></script>
     <script src="https://unpkg.co/gsap@3/dist/gsap.min.js"></script>

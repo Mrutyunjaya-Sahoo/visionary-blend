@@ -1,0 +1,212 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+:root {
+  --font1: "Poppins";
+  --font2: "Playfair Display";
+  --dark: rgb(250, 64, 64);
+  --cursor-size: 28px;
+  --bg: #ffffff;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  background-color: #000;
+  color: white;
+  font-family: var(--font1);
+  overflow-x: hidden;
+}
+
+
+
+/* Cursor */
+.goo {
+  display: none;
+}
+
+#cursor {
+  position: fixed;
+  top: calc(var(--cursor-size) * -0.5);
+  left: calc(var(--cursor-size) * -0.5);
+  pointer-events: none;
+  mix-blend-mode: difference;
+  filter: url(#goo);
+}
+
+.cursor-circle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--cursor-size);
+  height: var(--cursor-size);
+  border-radius: var(--cursor-size);
+  background: var(--bg);
+  transform-origin: center center;
+}
+
+.flex,
+.flex__col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex__col {
+  flex-direction: column;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+main {
+  width: 100%;
+}
+
+.menu {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  width: calc(100% - 80px);
+  justify-content: space-between;
+  margin: 40px 0;
+  transform: translatex(-50%);
+}
+
+.menu a {
+  font-size: 1vw;
+  font-weight: 600;
+  color: var(--dark);
+  text-decoration: none;
+}
+
+.menu ul {
+  gap: 20px 60px;
+}
+
+.intro {
+  position: relative;
+  width: calc(100% - 80px);
+  min-height: 100vh;
+  gap: 80px;
+}
+
+.intro h1 {
+  width: 50%;
+  font-weight: 700;
+  font-size: 4.8vw;
+  line-height: 100%;
+  text-transform: uppercase;
+}
+
+.intro img {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  right: 50%;
+  width: 33%;
+  height: auto;
+  aspect-ratio: 9/14;
+  object-fit: cover;
+  opacity: 0.7;
+  transform: translateY(-50%);
+}
+
+.intro p {
+  width: 50%;
+  font-size: 1.6vw;
+}
+
+.intro p a {
+  color: #000;
+}
+
+.list__item {
+  position: relative;
+  width: 100vw;
+  height: calc(100vh - 40px);
+  align-items: flex-end;
+  padding-bottom: 40px;
+}
+
+.list__item__title,
+.list__item__titleOutline {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 50%;
+  font-family: var(--font2);
+  font-size: 18vw;
+  font-weight: 700;
+  line-height: 80%;
+  color: var(--dark);
+  text-align: center;
+  transform: translate(-50%, -50%);
+}
+
+.list__item__titleOutline {
+  z-index: 3;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--dark);
+}
+
+.list__item img {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  width: 33%;
+  height: auto;
+  aspect-ratio: 9/14;
+  object-fit: cover;
+  transform: translate(-50%, -50%);
+}
+
+ul.list__item__infos {
+  width: calc(100% - 80px);
+  justify-content: space-between;
+}
+
+.list__item__infos li {
+  font-size: 1vw;
+}
+
+.list__item__infos li span {
+  color: #818181;
+}
+
+.list__item__type,
+.list__item__project {
+  position: absolute;
+  top: 50%;
+  font-size: 1vw;
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  transform: translateY(-50%);
+  color: #818181;
+}
+
+.list__item__type {
+  left: 36px;
+}
+
+.list__item__project {
+  right: 36px;
+}
+
+@media (min-width: 1900px) {
+  .list__item__title,
+  .list__item__titleOutline {
+    font-size: 450px;
+  }
+
+  .list__item img,
+  .intro__img {
+    width: auto;
+    height: 80%;
+  }
+}

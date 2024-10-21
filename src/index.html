@@ -9,12 +9,25 @@
     <link rel="stylesheet" href="input.css">
     <link rel="stylesheet" href="output.css">
     <link rel="shortcut icon" href="logo.png" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <!-- icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 </head>
 
 <body>
+
+    <svg xmlns="http://www.w3.org/2000/svg" class="goo" version="1.1" width="100%">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur"></feGaussianBlur>
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 35 -15"
+                    result="goo"></feColorMatrix>
+                <feComposite in="SourceGraphic" in2="goo" operator="atop"></feComposite>
+            </filter>
+        </defs>
+    </svg>
+
+    <div id="cursor"></div>
+
     <header>
         <nav>
             <div class="info">
@@ -108,55 +121,6 @@
         </section>
     </main>
 
-
-    <!-- <section id="services" class="">
-        <div class="service-container ">
-            <div class="wrapper_full_width">
-                <h1 class="text-[62px] text-white">What We Do </h1>
-            </div>
-            <div class="card_wrapper">
-
-                <a href="./services.html" class="card is_1">
-                    <img src="https://img.freepik.com/free-photo/digital-marketing-with-icons-business-people_53876-94833.jpg?t=st=1728091854~exp=1728095454~hmac=5a46d627bd277804b71a5d940dbf3ae7f125782e227a61aa7c699db6fa94000e&w=996"
-                        alt="">
-                    <div class="card__content">
-                        <p class="card__title">Digital Marketing</p>
-                        <p class="card__description">Boost your brand with smart digital strategies designed to drive
-                            results! From captivating social media campaigns to cutting-edge SEO, we’ll connect you with
-                            your audience in meaningful ways.</p>
-                    </div>
-                </a>
-                <a href="https://captdeepak-9153.github.io/Satyam-Project/#" class="card is_1">
-                    <img src="https://img.freepik.com/free-photo/young-female-product-photographer-studio_23-2148970228.jpg?t=st=1728092252~exp=1728095852~hmac=03000980bd7f1174e0d5383fd9a7b7331512b9b11f0ed80da1d53fd9add06414&w=1060"
-                        alt="">
-                    <div class="card__content">
-                        <p class="card__title">Photography</p>
-                        <p class="card__description">Turn moments into masterpieces! Whether it's for your business or
-                            personal memories, our photography captures the essence of every occasion with creativity
-                            and flair.</p>
-                    </div>
-                </a>
-
-
-                <a href="https://captdeepak-9153.github.io/Satyam-Project/#" class="card is_1">
-                    <img src="https://img.freepik.com/free-photo/collage-about-movie-time-with-hands-holding-camera_23-2149946308.jpg?t=st=1728092775~exp=1728096375~hmac=4ef4817ab1f1cfa7145d4f4c2fdf1155757ec6566d3f0de0c75cda5dbdadbd6c&w=996"
-                        alt="">
-                    <div class="card__content">
-                        <p class="card__title">Videography</p>
-                        <p class="card__description">Tell your story through stunning visuals! From dynamic promotional
-                            videos to cinematic experiences, our videography brings your ideas to life with a
-                            professional touch.</p>
-                    </div>
-                </a>
-
-
-            </div>
-        </div>
-        </div>
-    </section>
-    <div class="Scroll"></div> -->
-
-
     <section class="services_container" id="services">
         <h1 class="section_title">Our Services</h1>
 
@@ -167,6 +131,22 @@
                 <p>Boost your brand with smart digital strategies designed to drive results! From captivating social
                     media
                     campaigns to cutting-edge SEO, we’ll connect you with your audience in meaningful ways.</p>
+
+
+                <a href="./services.html">
+                    <button type="submit"
+                        class="flex justify-center gap-2 items-center mx-auto shadow-xl text-lg bg-gray-50 backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-emerald-500 hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group">
+                        Explore
+                        <svg class="w-8 h-8 justify-end group-hover:rotate-90 group-hover:bg-gray-50 text-gray-50 ease-linear duration-300 rounded-full border border-gray-700 group-hover:border-none p-2 rotate-45"
+                            viewBox="0 0 16 19" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658 -0.0976311 7.68342 -0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z"
+                                class="fill-gray-800 group-hover:fill-gray-800"></path>
+                        </svg>
+                    </button>
+                </a>
+
+
             </div>
             <div class="service_right">
                 <div class="img_slider"><img
@@ -195,6 +175,20 @@
                 <h1>Photography & Videography</h1>
                 <p>Capture unforgettable moments with professional photography and videography services. From events to
                     branding, we make every shot count.</p>
+
+                <a href="./photography.html">
+                    <button type="submit"
+                        class="flex justify-center gap-2 items-center mx-auto shadow-xl text-lg bg-gray-50 backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-emerald-500 hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group">
+                        Explore
+                        <svg class="w-8 h-8 justify-end group-hover:rotate-90 group-hover:bg-gray-50 text-gray-50 ease-linear duration-300 rounded-full border border-gray-700 group-hover:border-none p-2 rotate-45"
+                            viewBox="0 0 16 19" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658 -0.0976311 7.68342 -0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z"
+                                class="fill-gray-800 group-hover:fill-gray-800"></path>
+                        </svg>
+                    </button>
+                </a>
+
             </div>
         </div>
     </section>
@@ -333,7 +327,7 @@
                     <div class="single-footer-widget">
                         <h3 class="footer-heading">Services</h3>
                         <ul class="footer-links-list">
-                            <li><a href="#">Digital Marketing </a></li>
+                            <li><a href="./services.html">Digital Marketing </a></li>
                             <li><a href="#">Ad Promotion</a></li>
                             <li><a href="#">Video Editing</a></li>
                             <li><a href="#">Social Media Handel</a></li>
@@ -347,6 +341,7 @@
                     <div class="single-footer-widget">
                         <h3 class="footer-heading">Services</h3>
                         <ul class="footer-links-list">
+                            <li><a href="./photography.html">Photography & Videography </a></li>
                             <li><a href="#">Ring Ceremony </a></li>
                             <li><a href="#">Pre-Wedding
                                 </a></li>

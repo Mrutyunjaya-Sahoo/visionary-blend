@@ -1,179 +1,88 @@
-class HoverImage {
-    constructor(element, options) {
-        this.el = element;
-        this.imgUrl = element.dataset.hoverImg;
-        this.img = this.createHoverImage();
-        this.imgDimensions = this.getDimensions(this.img);
-        this.init();
+gsap.set('.container img.swipeimage', { yPercent: -50, xPercent: -50 });
 
-        this.options = Object.assign({}, {
-            maxVel: 20,
-            lerp: 0.1,
-            base: 0.085,
-            delta: 0.0005,
-        }, options);
+let activeImage;
+gsap.utils.toArray(".container").forEach((el) => {
+    let image = el.querySelector('img.swipeimage'),
+        setX, setY,
+        align = e => {
+            setX(e.clientX);
+            setY(e.clientY);
+        },
+        startFollow = () => document.addEventListener("mousemove", align),
+        stopFollow = () => document.removeEventListener("mousemove", align),
+        fade = gsap.to(image, { autoAlpha: 1, ease: "none", paused: true, onReverseComplete: stopFollow });
 
-        this.x = 0;
-        this.y = 0;
-        this.lastX = 0;
-        this.lastY = 0;
-        this.vel = { x: 0, y: 0 };
-        this.lerpVel = { x: 0, y: 0 };
-        this.paused = false;
-        this.points = this.getPoints();
-        this.maskPath = this.getMaskPath();
-        this.mask = this.createMask();
-        this.render();
-
-    }
-    render() {
-        if (this.paused === true) return;
-        requestAnimationFrame(() => this.render());
-        this.vel = {
-            x: 100 / this.options.maxVel * clamp(this.x - this.lastX, -this.options.maxVel, this.options.maxVel),
-            y: 100 / this.options.maxVel * clamp(this.y - this.lastY, -this.options.maxVel, this.options.maxVel),
-        };
-        this.lerpVel = {
-            x: lerp(this.lerpVel.x, this.vel.x, this.options.lerp),
-            y: lerp(this.lerpVel.y, this.vel.y, this.options.lerp),
+    el.addEventListener('mouseenter', (e) => {
+        fade.play(false);
+        startFollow();
+        if (activeImage) { // if there's an actively-animating one, we should match its position here
+            gsap.set(image, { x: gsap.getProperty(activeImage, "x"), y: gsap.getProperty(activeImage, "y") });
         }
+        activeImage = image;
+        setX = gsap.quickTo(image, "x", { duration: 0.2, ease: "power3" }),
+            setY = gsap.quickTo(image, "y", { duration: 0.2, ease: "power3" })
+        align(e);
+    });
 
-        this.points = this.getPoints();
+    el.addEventListener('mouseleave', () => fade.reverse());
 
-        this.maskPath = this.getMaskPath();
-        gsap.to(this.mask, {
-            attr: { d: this.maskPath }
-        });
-
-        const distance = Math.sqrt(Math.pow(this.vel.x, 2) + Math.pow(this.vel.y, 2));
-        const scale = Math.min(distance * this.options.delta, 1);
-        const angle = (this.vel.x * this.options.delta * 180) / Math.PI;
-        gsap.to(this.img, {
-            scale: 1 - scale,
-            rotate: angle,
-        })
-
-        this.lastX = this.x;
-        this.lastY = this.y;
-    }
-    init() {
-        this.el.parentElement.addEventListener('mousemove', (e) => {
-            if (this.paused === true) return;
-            this.x = e.clientX;
-            this.y = e.clientY;
-            this.move();
-        });
-        this.el.addEventListener('mouseenter', () => {
-            if (this.paused === true) return;
-            this.toggleVisibility(this.img, true)
-        });
-        this.el.addEventListener('mouseleave', () => {
-            if (this.paused === true) return;
-            this.toggleVisibility(this.img, false)
-        });
-    }
-    createHoverImage() {
-        let imageElm = new Image(900);
-        imageElm.src = this.imgUrl;
-        imageElm.classList.add('hover-image');
-        // let the browser rasterize the image and hide it after
-        // cause strange behavior where browser dont really load images with opacity set to 0
-        imageElm.addEventListener('load', () => {
-            imageElm.style.opacity = '0.01';
-            this.el.appendChild(imageElm);
-            setTimeout(() => {
-                this.toggleVisibility(imageElm, false, 0);
-            }, 100);
-        });
-        return imageElm;
-    }
-    move() {
-        this.imgDimensions = this.getDimensions(this.img)
-        const y = this.y - this.imgDimensions.height / 2;
-        const x = this.x - this.imgDimensions.width / 2;
-        console.log(x, y)
-        gsap.to(this.img, {
-            y: y,
-            x: x,
-        });
-    }
-    createMask() {
-        let maskpath = document.querySelector('#hover-image__mask path');
-        this.img.style.cssText +=
-            '-webkit-clip-path: url(#hover-image__mask);clip-path: url(#hover-image__mask);';
-        if (maskpath) return maskpath;
-
-        document.body.insertAdjacentHTML(
-            'beforeend',
-            `
-            <svg height="0" width="0" style="position:absolute;">
-                <!--   https://yqnn.github.io/svg-path-editor/ -->
-                <defs>
-                    <clipPath id="hover-image__mask" clipPathUnits="objectBoundingBox">
-                    <path 
-                        d="${this.maskPath}"
-                        data-path-normal="${this.maskPath}"
-                    />
-                    </clipPath>
-                </defs>
-            </svg>
-            `
-        );
-        return document.querySelector('#hover-image__mask path');
-    }
-    toggleVisibility(el, show, duration = null) {
-        let time = {};
-        if (duration !== null) {
-            time = {
-                duration: 0,
-            };
+});
+gsap.utils.toArray(".container-text").forEach((text) => {
+    gsap.fromTo(
+        text,
+        {
+            x: -300,  // Start 300px to the left (off-screen)
+            opacity: 0,  // Start invisible
+        },
+        {
+            x: 0,  // Slide to its original position
+            opacity: 1,  // Fade in as it slides in
+            duration: 0.5,  // Fast animation (0.5 seconds)
+            ease: "power4.out",  // Smooth easing effect
+            scrollTrigger: {
+                trigger: text,
+                start: "top 80%",  // Start the animation when the element is 80% into the viewport
+                end: "top 10%",  // End when it reaches the top 10%
+                toggleActions: "play reverse play reverse",  // Play on scroll down, reverse on scroll up
+            },
         }
-        gsap.to(el, {
-            opacity: show ? 1 : 0,
-            ...time,
-        });
-    }
-    getMaskPath() {
-        return `M ${this.options.base} ${this.options.base} C ${this.points.left.top} 0.25 ${this.points.left.bottom} 0.75 ${this.options.base} ${1 - this.options.base} C 0.25 ${this.points.bottom.left} 0.75 ${this.points.bottom.right} ${1 - this.options.base} ${1 - this.options.base} C ${this.points.right.bottom} 0.75 ${this.points.right.top} 0.25 ${1 - this.options.base} ${this.options.base} C 0.75 ${this.points.top.right} 0.25 ${this.points.top.left} ${this.options.base} ${this.options.base} Z`;
-    }
-    getPoints() {
-        return {
-            left: {
-                top: this.options.base + (this.options.base / 100 * this.lerpVel.x),
-                bottom: this.options.base + (this.options.base / 100 * this.lerpVel.x),
-            },
-            bottom: {
-                left: (1 - this.options.base) + (this.options.base / 100 * this.lerpVel.y),
-                right: (1 - this.options.base) + (this.options.base / 100 * this.lerpVel.y),
-            },
-            right: {
-                bottom: (1 - this.options.base) + (this.options.base / 100 * this.lerpVel.x),
-                top: (1 - this.options.base) + (this.options.base / 100 * this.lerpVel.x),
-            },
-            top: {
-                right: this.options.base + (this.options.base / 100 * this.lerpVel.y),
-                left: this.options.base + (this.options.base / 100 * this.lerpVel.y),
-            },
-        };
-    }
-    getDimensions(el) {
-        return { width: el.clientWidth, height: el.clientHeight };
-    }
-    start() {
-        this.paused = false;
-        this.render();
-    }
-    stop() {
-        this.paused = true;
-    }
-}
-function clamp(val, min, max) {
-    return Math.min(Math.max(val, min), max);
-}
-function lerp(v0, v1, t) {
-    return v0 * (1 - t) + v1 * t;
-}
+    );
+});
+gsap.registerPlugin(ScrollTrigger);
 
-for (const item of document.querySelectorAll("[data-hover-img]")) {
-    new HoverImage(item);
+// Sliding animation for the "Digital Marketing" title words
+gsap.fromTo(
+    ".word",
+    {
+        y: 100,  // Start below the viewport
+        opacity: 0,  // Start invisible
+    },
+    {
+        y: 0,  // Slide into the original position
+        opacity: 1,  // Fade in
+        duration: 0.8,  // Smooth animation over 0.8 seconds
+        ease: "power4.out",  // Smooth easing
+        stagger: 0.2,  // Stagger animation between words by 0.2s
+        scrollTrigger: {
+            trigger: ".title-row",
+            start: "top 80%",  // Trigger animation when 80% into the viewport
+            end: "top 30%",  // End when it reaches 30%
+            toggleActions: "play none none reverse",  // Play on scroll down, reverse on scroll up
+        },
+    }
+);
+
+function modeToggle() {
+    const root = document.documentElement;
+
+    // Check current background color to determine the mode
+    if (getComputedStyle(root).getPropertyValue('--background-color').trim() === 'black') {
+        // Switch to light mode
+        root.style.setProperty('--background-color', 'white');
+        root.style.setProperty('--foreground-color', 'black');
+    } else {
+        // Switch to dark mode
+        root.style.setProperty('--background-color', 'black');
+        root.style.setProperty('--foreground-color', 'white');
+    }
 }
