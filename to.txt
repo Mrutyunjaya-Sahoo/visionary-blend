@@ -1,0 +1,87 @@
+<section class="list flex__col">
+            <!-- RING CEREMONY -->
+            <div class="list__item flex">
+                <img
+                    src="https://images.unsplash.com/photo-1680268719962-acaffc32c3cb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=928&q=80">
+                <div class="list__item__title">Ring Ceremony</div>
+                <div class="list__item__titleOutline">Ring Ceremony</div>
+                <ul class="list__item__infos flex">
+                    <li><span>AGENCY</span> VISIONARY BLEND</li>
+                    <li><span>ROLE</span> DIGITAL MARKETING / PHTOGRAPHY & VIDEOGRAPHY</li>
+                    <!-- <li><span>CLIENT</span> ROBERTO STUDIO</li> -->
+                    <!-- <li><span>YEAR</span> 2023</li> -->
+                </ul>
+                <a href="./index.html">
+                    <div class="list__item__type">HOME</div>
+                </a>
+
+                <div class="list__item__project">PORTFOLIO</div>
+            </div>
+            </div>
+
+           
+
+            <!-- CORPORATE EVENT -->
+            <div class="list__item flex">
+                <img src="https://i.postimg.cc/ZYQ3rL3j/IMG-20240923-200814-997.jpg">
+                <div class="list__item__title">Corporate Event
+
+                </div>
+                <div class="list__item__titleOutline">Corporate Event
+
+                </div>
+                <ul class="list__item__infos flex">
+                    <li><span>AGENCY</span> VISIONARY BLEND</li>
+                    <li><span>ROLE</span> DIGITAL MARKETING / PHTOGRAPHY & VIDEOGRAPHY</li>
+                </ul>
+                <a href="./index.html">
+                    <div class="list__item__type">HOME</div>
+                </a>
+
+                <div class="list__item__project">PORTFOLIO</div>
+            </div>
+            </div>
+
+            <!-- BABY SHOWER -->
+            <div class="list__item flex">
+                <img src="https://i.postimg.cc/Zqq62ck9/DSC5351.jpg">
+                <div class="list__item__title">Baby Shower
+
+                </div>
+                <div class="list__item__titleOutline">Baby Shower
+
+                </div>
+                <ul class="list__item__infos flex">
+                    <li><span>AGENCY</span> VISIONARY BLEND</li>
+                    <li><span>ROLE</span> DIGITAL MARKETING / PHTOGRAPHY & VIDEOGRAPHY</li>
+                </ul>
+                <a href="./index.html">
+                    <div class="list__item__type">HOME</div>
+                </a>
+
+                <div class="list__item__project">PORTFOLIO</div>
+            </div>
+            </div>
+
+            <!-- FASHION SHOOT -->
+            <div class="list__item flex">
+                <img src="https://i.postimg.cc/J0hjq644/IMG-20240923-212212-187.jpg">
+                <div class="list__item__title">Fashion Shoot
+
+                </div>
+                <div class="list__item__titleOutline">Fashion Shoot
+
+                </div>
+                <ul class="list__item__infos flex">
+                    <li><span>AGENCY</span> VISIONARY BLEND</li>
+                    <li><span>ROLE</span> DIGITAL MARKETING / PHTOGRAPHY & VIDEOGRAPHY</li>
+                </ul>
+                <a href="./index.html">
+                    <div class="list__item__type">HOME</div>
+                </a>
+
+                <div class="list__item__project">PORTFOLIO</div>
+            </div>
+            </div>
+
+        </section>
